@@ -1,0 +1,45 @@
+<p>hero works!</p>
+
+<h1>{{name}}</h1>
+
+
+<dl>
+<td>Nombre:</td>
+<!--Interpolacion: Puedo usar los atributos de la clase HeroComponent para que se visualicen con {{}} -->
+<dd>{{name}}</dd>
+
+<td>Edad:</td>
+<dd>{{age}}</dd>
+
+<td>Método:</td>
+<dd>{{ getHeroDescription() }}</dd>
+
+<td>Capitalizado:</td>
+<dd>{{capitalizedName}}</dd>
+
+
+</dl>
+
+<!-- ngIf valida una condicion verdadero o falso para ocultar o mostrar el elemento-->
+<button
+*ngIf="name !== 'Spiderman'"
+ (click)="changeHero()" class="btn btn-primary mx-2">
+  Cambiar Nombre
+</button>
+
+<button
+*ngIf="age !== 25"
+ (click)="changeAge()" class="btn btn-primary">
+  Cambiar edad
+</button>
+
+
+<button
+ (click)="resetForm()"
+  class="btn btn-primary mx-2">
+  Reset
+</button>
+
+
+
+

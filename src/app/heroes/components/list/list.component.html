@@ -1,0 +1,45 @@
+<p>list works!</p>
+
+<h3>Listado de Héroes</h3>
+
+
+<!-- Estos son estilos el bootstrap-->
+<ul class="mt-2 list-group">
+
+  <li class="list-group-item">Spiderman</li>
+  <li class="list-group-item">Ironman</li>
+  <li class="list-group-item">Hulk</li>
+  <li class="list-group-item">Thor</li>
+
+</ul>
+<div *ngIf="deletedHero; else nothingWasDeleted">
+  <h3>Heroe borrado <small class="text-danger"> {{deletedHero}} </small></h3>
+</div>
+
+<ng-template #nothingWasDeleted>
+
+  <h3>No ha borrado nada</h3>
+
+</ng-template>
+
+
+<button
+*ngIf="heroNames.length > 0"
+(click)="removeLastHero()"
+class="btn btn-outline-danger">
+
+Borrar último héroe
+
+</button>
+
+
+<ul class="mt-2 list-group">
+<!-- ngFor sirve para mostrar los elementos de una lista , itera un array-->
+  <li *ngFor="let name of heroNames"
+   class="list-group-item">
+    <strong>{{ name }}</strong>
+  </li>
+
+
+</ul>
+
