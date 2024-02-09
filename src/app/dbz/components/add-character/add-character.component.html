@@ -1,0 +1,32 @@
+<h4>Agregar personaje</h4>
+
+<!-- ngSubmit es para enviar la informacion sin refrescar el navegador, aunque lo de no refrescar ya lo hace el Formsmodule que pusimos antes-->
+      <form class="row" (ngSubmit)="emitCharacter()">
+        <!-- Si ponemos () es para asociar un evento -->
+        <!-- Si ponemos [] es para asociar un atributo -->
+        <!-- Si ponemos los dos, son las dos cosas a la vez: twoway data binding -->
+        <!-- Asi, actualiza esa referencia name del add.character.component.ts-->
+        <!-- Para usar el NGModel asi:-->
+        <!-- Tenemos que importar el modulo de angular FormsModule en el modulo de este componente: dbz.module.ts-->
+        <input type="text"
+          [(ngModel)]="character.name"
+          name="name"
+         class="form-control mb-2"
+          placeholder="Nombre">
+
+        <input type="text"
+          [(ngModel)]="character.power"
+          name="power"
+          class="form-control mb-2"
+          placeholder="Poder">
+
+        <!--<button type="submit" class="btn btn-primary" (click)="emitCharacter()"> -->
+        <button type="submit" class="btn btn-primary">
+          Agregar
+        </button>
+
+<!-- pre es propio de bootstrap-->
+<!-- Si ponemos el | (pipe) y JSON, muestra la estructura de character en formato de json con sus valores-->
+        <pre> {{ character | json }} </pre>
+
+      </form>
