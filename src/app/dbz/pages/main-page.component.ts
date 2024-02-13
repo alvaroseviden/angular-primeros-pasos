@@ -5,6 +5,7 @@
 
 import { Component} from '@angular/core';
 import { Character } from '../interfaces/character.interface';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-dbz-main-page',
@@ -13,32 +14,32 @@ import { Character } from '../interfaces/character.interface';
 
 export class MainPageComponent  {
 
+// Esto es para inyectar por dependendecias el service
+// lo llamo dbzService a la variable de inyeccion
+//Las buenas practica de programacion nos dice que los services deben ser privates, aunuqe sea mas comodo poneros public
+  constructor ( private dbzService: DbzService) {}
 
-  public characters: Character[] = [{
-    name: 'Krillin',
-    power: 1000
-  },{
-    name: 'Goku',
-    power: 9500
-  },{
-    name: 'Vegeta',
-    power: 7000
-  }];
+  //Al hacerlo privado el Service, la aplicación deja de funcionar.
+  // PAra arreglarlo y poder usar el service como private, tengo que hacer getters:
+  // Este get me devuelve los personajes del Service
+  // Asi, si tu modificas los charcaters qeu te pase este get, automaticamente se cambia el del WS
+  get characters(): Character[] {
+    //return this.dbzService.characters;
+    //Si lo pones así, haces que lo que devuelves sea una copia, no modificas lo que haya en el Service
+    return [...this.dbzService.characters];
 
-
-
-
-  onNewCharacter( character: Character ):void {
-    console.log('MainPage');
-    console.log(character);
-    //Mete el personaje del formulario en el listado al final
-    this.characters.push(character);
   }
 
-  //Eliminamos por id, que es el indice del listado
-  onDeleteCharacter (index: number): void {
-    console.log('Borro personaje: ' + index);
-    this.characters.splice(index,1);
+  //Al hacer privad oel service, necesito un metodo para borrar por id:
+  onDeleteCharacter( id: string ): void {
+    // Lo que hace es lanzar el metodo que ya existe en el propio service
+    this.dbzService.deleteCharacterById(id);
+
+  }
+
+
+  onNewCharacter(character:Character): void {
+    this.dbzService.addCharacter( character );
   }
 
 

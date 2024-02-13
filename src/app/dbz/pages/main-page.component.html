@@ -14,6 +14,13 @@
 
     <!-- Al haber declarado un arrray characterList en el componente, puedo utilizarlo aqui -->
     <!-- Puedo asignarle el array characters porque está definido en el main page component ts-->
+    <!-- Nuevo paso: Ahora el array characters lo saco del servicio dbzService, y las funciones tb-->
+    <!-- <dbz-list [characterList]="dbzService.characters" (onDelete)="dbzService.onDeleteCharacter($event)" ></dbz-list> -->
+    <!-- Cambio el metodo de borrar por uso que ses borrar por id uuid-->
+    <!--<dbz-list [characterList]="dbzService.characters" (onDelete)="dbzService.deleteCharacterById($event)" ></dbz-list> -->
+
+    <!-- Al hacer private el Serive, ya no cojo los characters de dbzService. LO COJO del getter characters del main page-->
+    <!-- Al hacer private el Service, no uso el metodo de borrar de dbzService. LO COJO del metodo onDeleteCharacter del main page-->
     <dbz-list [characterList]="characters" (onDelete)="onDeleteCharacter($event)" ></dbz-list>
 
 
@@ -32,8 +39,10 @@
 <!--(onNewCharacter)= evento que usa el Emitter creado en add-character.component.ts -->
 <!--"onNewCharacter($event) = funcion js creado en main-page.component.ts -->
 <!-- $event Esto es de Angular, se pone asi para que espere a recibir el elemento en forma deevento-->
+<!-- Nuevo paso: Ahora el array characters lo saco del servicio dbzService, y las funciones tb-->
+<!--<dbz-add-character (onNewCharacter)="dbzService.onNewCharacter($event)" ></dbz-add-character> -->
+<!-- Al hacer private el Service, no uso el metodo de borrar de dbzService. LO COJO del metodo onDeleteCharacter del main page-->
 <dbz-add-character (onNewCharacter)="onNewCharacter($event)" ></dbz-add-character>
-
     <!--<h4>Agregar personaje</h4>
 
 

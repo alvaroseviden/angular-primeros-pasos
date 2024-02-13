@@ -35,6 +35,8 @@
    <span>{{ character.name }} - </span>
    <strong>Power: </strong>
    <span>{{ character.power }}</span>
+   <strong>Id: </strong>
+   <span>{{ character.id }}</span>
 
  <!-- <span>Es el primero: {{ i === 0 }}</span>
   <span>Es el último: {{ i === characterList.length - 1 }}</span>-->
@@ -46,7 +48,9 @@
 
 </div>
 
-  <button (click)="onDeleteCharacter(i);" class="btn btn-danger">X</button>
+  <!--<button (click)="onDeleteCharacter(i);" class="btn btn-danger">X</button> -->
+  <!-- Voy a cambiarlo para borrar por id UUID, no por posicion-->
+  <button (click)="onDeleteCharacter(character.id);" class="btn btn-danger">X</button>
 
   </li>
 </ul>
